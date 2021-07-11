@@ -13,6 +13,7 @@ namespace ConfigurationReader
         private readonly IMongoDbRepository<ConfigurationModel> _mongoDbRepository;
         private readonly string _applicationName;
         private readonly int _refreshTimerIntervalInMs;
+
         public ConfigurationReader(string applicationName, string connectionString, int refreshTimerIntervalInMs)
         {
             _configValues = new Dictionary<string, object>();
