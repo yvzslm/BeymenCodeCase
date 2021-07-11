@@ -10,11 +10,11 @@
     <div class="col-md-4">
         <form asp-action="Add">
             <div class="form-group">
-                <label for="nameInput">Config adı:</label>
+                <label for="nameInput">Config name:</label>
                 <input type="text" class="form-control" id="nameInput" asp-for="Name">
             </div>
             <div class="form-group">
-                <label for="typeSelect">Config tipi:</label>
+                <label for="typeSelect">Config type:</label>
                 <select class="form-control" id="typeSelect" asp-for="Type">
                     <option>String</option>
                     <option>Integer</option>
@@ -23,8 +23,12 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="valueInput">Config değeri:</label>
+                <label for="valueInput">Config value:</label>
                 <input type="text" class="form-control" id="valueInput" asp-for="Value">
+            </div>
+            <div class="form-group">
+                <label for="applicationNameInput">Application name:</label>
+                <input type="text" class="form-control" id="applicationNameInput" asp-for="ApplicationName">
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="isActiveCheck" asp-for="IsActive">

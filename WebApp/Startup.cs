@@ -27,6 +27,7 @@ namespace WebApp
             services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoDbConnectionSettings>>().Value);
             services.AddSingleton(typeof(IMongoDbRepository<>), typeof(MongoDbRepository<>));
             services.AddSingleton(typeof(IMongoDbService<>), typeof(MongoDbService<>));
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

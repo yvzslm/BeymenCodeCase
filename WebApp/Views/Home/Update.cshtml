@@ -10,7 +10,6 @@
     <div class="col-md-4">
         <form asp-action="Update">
             <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="ApplicationName" />
             <div class="form-group">
                 <label for="nameInput">Config adı:</label>
                 <input type="text" class="form-control" id="nameInput" asp-for="Name">
@@ -27,6 +26,10 @@
             <div class="form-group">
                 <label for="valueInput">Config değeri:</label>
                 <input type="text" class="form-control" id="valueInput" asp-for="Value">
+            </div>
+            <div class="form-group">
+                <label for="applicationNameInput">Application name:</label>
+                <input type="text" class="form-control" id="applicationNameInput" asp-for="ApplicationName">
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="isActiveCheck" asp-for="IsActive">
