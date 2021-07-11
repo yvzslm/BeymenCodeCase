@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ConfigurationViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Config Listesi</h2>
+
+<a class="btn btn-primary btn-sm mt-3 mb-3" asp-action="Add">Yeni Config Ekle</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Value</th>
+            <th scope="col">IsActive</th>
+            <th scope="col">ApplicationName</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.Type</td>
+                <td>@item.Value</td>
+                <td>@item.IsActive</td>
+                <td>@item.ApplicationName</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Update" asp-route-configId="@item.Id">Güncelle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
