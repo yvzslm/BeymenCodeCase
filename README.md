@@ -1,1 +1,1 @@
-This project uses mongodb. You need to install mongodb to run this project.
+This project uses MongoDB. You need to install MongoDB to run this project.
