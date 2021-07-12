@@ -1,4 +1,4 @@
-﻿namespace WebApp.Models
+﻿namespace ConfigurationManagerUI.Models
 {
     public class ConfigurationViewModel
     {

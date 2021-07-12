@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Core;
-using WebApp.Models;
+using ConfigurationManagerUI.Models;
 
-namespace WebApp.Mappings
+namespace ConfigurationManagerUI.Mappings
 {
     public class MappingProfile : Profile
     {

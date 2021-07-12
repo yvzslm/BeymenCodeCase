@@ -1,14 +1,19 @@
-using Core;
+using ConfigurationReader;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Repository;
-using Service;
+using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ConfigurationManagerUI
+namespace WebApi
 {
     public class Startup
     {
@@ -22,12 +27,14 @@ namespace ConfigurationManagerUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.Configure<MongoDbConnectionSettings>(Configuration.GetSection(nameof(MongoDbConnectionSettings)));
-            services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoDbConnectionSettings>>().Value);
-            services.AddSingleton(typeof(IMongoDbRepository<>), typeof(MongoDbRepository<>));
-            services.AddSingleton(typeof(IMongoDbService<>), typeof(MongoDbService<>));
-            services.AddAutoMapper(typeof(Startup));
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
+            });
+
+            services.AddConfigurationReader("WebApi", Configuration["MongoDbConnectionString"], 5000);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,14 +43,11 @@ namespace ConfigurationManagerUI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -51,9 +55,7 @@ namespace ConfigurationManagerUI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

@@ -5,9 +5,9 @@ using MongoDB.Driver;
 using Service;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApp.Models;
+using ConfigurationManagerUI.Models;
 
-namespace WebApp.Controllers
+namespace ConfigurationManagerUI.Controllers
 {
     public class HomeController : Controller
     {
